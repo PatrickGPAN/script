@@ -484,7 +484,6 @@ print "###START TO VERIFY THE SETTLEMENT STATEMENT###"
 
 #Verification
 #Account summary
-#客户权益/期末权益＝上日权益＋出入金－手续费＋平仓盈亏＋持仓盈亏+期权执行盈亏+质押变化金额+期权当日权利金收支+货币质押变化金额
 pdac=pd.read_csv(cusid+"_"+date+"/"+"0011_SG01_"+date+"_1_AccountSummary_CNY.csv")
 equ=pdac.iloc[0]['Balance b/f']+pdac.iloc[0]['Deposit/Withdrawal']-pdac.iloc[0]['Commission']-pdac.iloc[0]['Exercise Fee']-pdac.iloc[0]['Delivery Fee']+pdac.iloc[0]['Realized P/L']+pdac.iloc[0]['MTM P/L']+pdac.iloc[0]['Exercise P/L']+pdac.iloc[0]['Chg in Pledge Amt']+pdac.iloc[0]['premium received']-pdac.iloc[0]['premium paid']+pdac.iloc[0]['Chg in FX Pledge']
 if str(pdac.iloc[0]['Client Equity'])!=str(equ):
@@ -492,7 +491,6 @@ if str(pdac.iloc[0]['Client Equity'])!=str(equ):
 else:
     print "Client Equity with CNY has been verified"
 
-#可用资金=期末权益-保证金占用-New FX Pledge
 if pdac.iloc[0]['FX Pledge Occ']<pdac.iloc[0]['Margin Occupied']:
     if str(pdac.iloc[0]['Fund Avail.'])!=str(pdac.iloc[0]['Client Equity']-pdac.iloc[0]['Margin Occupied']-pdac.iloc[0]['New FX Pledge']):
         easygui.msgbox("请查看AccountSummary_CNY的可用资金", title="Reminder", ok_button="OK")
@@ -504,8 +502,6 @@ elif pdac.iloc[0]['FX Pledge Occ']>=pdac.iloc[0]['Margin Occupied']:
     else:
         print "Fund avaliable with CNY has been verified"
 
-
-#客户权益/期末权益＝上日权益＋出入金－手续费＋平仓盈亏＋持仓盈亏+期权执行盈亏+质押变化金额+期权当日权利金收支
 pdac=pd.read_csv(cusid+"_"+date+"/"+"0011_SG01_"+date+"_1_AccountSummary_USD.csv")
 """
 equ=pdac.iloc[0]['Balance b/f']+pdac.iloc[0]['Deposit/Withdrawal']-pdac.iloc[0]['Commission']-pdac.iloc[0]['Exercise Fee']-pdac.iloc[0]['Delivery Fee']+pdac.iloc[0]['Realized P/L']+pdac.iloc[0]['MTM P/L']+pdac.iloc[0]['Exercise P/L']+pdac.iloc[0]['Chg in Pledge Amt']+pdac.iloc[0]['premium received']-pdac.iloc[0]['premium paid']+pdac.iloc[0]['Chg in FX Pledge']
@@ -514,7 +510,6 @@ if str(pdac.iloc[0]['Client Equity'])!=str(equ):
 else:
     print "Client Equity with USD has been verified"
 """
-#可用资金=期末权益-保证金占用
 if pdac.iloc[0]['FX Pledge Occ']<pdac.iloc[0]['Margin Occupied']:
     if str(pdac.iloc[0]['Fund Avail.'])!=str(pdac.iloc[0]['Client Equity']-pdac.iloc[0]['Margin Occupied']-pdac.iloc[0]['New FX Pledge']):
         easygui.msgbox("请查看AccountSummary_USD的可用资金", title="Reminder", ok_button="OK")
