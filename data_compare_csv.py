@@ -2,8 +2,6 @@
 import pandas as pd
 import numpy as np
 
-#print u"###主席品种保证金取的是合约保证金的最小值，原油合约需要手工输入###"
-
 date = raw_input("Please input the Date (Format: eg. 2017-08-30):")
 cusid = raw_input("Please input the customer ID with the company standard:")
 #sc=float(raw_input("Please input the collateral rate for SC (Format: eg. 0.07):"))
